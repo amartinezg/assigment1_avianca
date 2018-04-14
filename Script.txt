@@ -1,0 +1,15 @@
+2. Create 2 Tablespaces
+
+a. first one with 2 Gb and 1 datafile, tablespace should be named " avianca "
+
+CREATE TABLESPACE AVIANCA
+    DATAFILE 'avianca_f1.dat' SIZE 2048M
+    ONLINE;
+
+b. Undo tablespace with 25Mb of space and 1 datafile
+    
+-- Creating an undo TablesSpace
+CREATE UNDO TABLESPACE UNDO_AVIANCA
+  DATAFILE 'undo_avianca.dat'
+  SIZE 25M 
+  RETENTION GUARANTEE;
