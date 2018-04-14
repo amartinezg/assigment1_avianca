@@ -37,6 +37,7 @@ attempts
   CREATE PROFILE PRF_CLERK LIMIT
   PASSWORD_LIFE_TIME 40
   SESSIONS_PER_USER 1
+  IDLE_TIME 10
   FAILED_LOGIN_ATTEMPTS 4;
 
 b. Profile 3: "development " password life 100 days, two session per user, 30 minutes idle, no
