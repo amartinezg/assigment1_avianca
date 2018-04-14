@@ -11,5 +11,7 @@ b. Undo tablespace with 25Mb of space and 1 datafile
 -- Creating an undo TablesSpace
 CREATE UNDO TABLESPACE UNDO_AVIANCA
   DATAFILE 'undo_avianca.dat'
-  SIZE 25M 
-  RETENTION GUARANTEE;
+  SIZE 25M;
+  
+3.  Set the undo tablespace to be used in the system
+  alter system set undo_tablespace = UNDO_AVIANCA scope = both; 
