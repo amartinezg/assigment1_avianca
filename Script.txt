@@ -27,3 +27,62 @@ unlimited space on the tablespace (The user should have permission to connect)
   GRANT DBA to aviancaDBA;
   GRANT CREATE SESSION TO aviancaDBA;
   GRANT CONNECT TO aviancaDBA;
+
+
+5. Create 2 profiles. (0.125)
+a. Profile 1: "clerk" password life 40 days, one session per user, 10 minutes idle, 4 failed login
+attempts
+  
+
+  CREATE PROFILE PRF_CLERK LIMIT
+  PASSWORD_LIFE_TIME 40
+  SESSIONS_PER_USER 1
+  FAILED_LOGIN_ATTEMPTS 4;
+
+b. Profile 3: "development " password life 100 days, two session per user, 30 minutes idle, no
+failed login attempts
+
+  CREATE PROFILE PRF_DEVELOPMENT LIMIT
+  PASSWORD_LIFE_TIME 100
+  SESSIONS_PER_USER 2
+  IDLE_TIME 30
+  FAILED_LOGIN_ATTEMPTS UNLIMITED;
+
+6. Create 4 users, assign them the tablespace " avianca "; 2 of them should have the clerk profile and the
+remaining the development profile, all the users should be allow to connect to the database. (0.125)
+
+  create user usuario1
+  identified by      usuario1
+  default tablespace   avianca
+  profile              PRF_CLERK;
+
+  create user usuario2
+  identified by      usuario2
+  default tablespace   avianca
+  profile              PRF_CLERK;
+
+  create user desarrollo1
+  identified by      desarrollo1
+  default tablespace   avianca
+  profile              PRF_DEVELOPMENT;
+
+  create user desarrollo2
+  identified by      desarrollo2
+  default tablespace   avianca
+  profile              PRF_DEVELOPMENT;
+
+  GRANT CONNECT TO usuario1;
+  GRANT CONNECT TO usuario2;
+  GRANT CONNECT TO desarrollo1;
+  GRANT CONNECT TO desarrollo2;
+
+7. Lock one user associate with clerk profile (0.125)
+
+  ALTER USER usuario1 ACCOUNT LOCK;
+
+9. Create a backup through RMAN and take a screenshot of the list of backups in the console. Add the
+image to git. (0.125)
+
+https://github.com/angel1060/assigment1_avianca/blob/master/Backup%20Rman.png
+
+
